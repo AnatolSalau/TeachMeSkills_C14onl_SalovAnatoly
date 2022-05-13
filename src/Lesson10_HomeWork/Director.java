@@ -1,6 +1,6 @@
 package Lesson10_HomeWork;
 
-public class Director extends AbstractDirector{
+class Director extends AbstractDirector{
 
     public Director(String name, String secondName, double workExperience, Position position) {
         super(name, secondName, workExperience, position);

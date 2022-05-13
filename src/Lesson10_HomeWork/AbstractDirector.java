@@ -22,35 +22,47 @@ abstract class AbstractDirector extends AbstractEmployee implements AddingEmploy
     }
 
     @Override
-    public AbstractEmployee[] addEmployee(AbstractEmployee... abstractEmployees) {
-        AbstractEmployee[] newAbstractEmployee =
-                new AbstractEmployee[this.abstractEmployees.length + abstractEmployees.length];
+    public void addEmployee(AbstractEmployee... abstractEmployees) {
 
-        System.arraycopy(this.abstractEmployees,
-                0,newAbstractEmployee,
-                0, this.abstractEmployees.length);
+        AbstractEmployee[] newAbstractEmployee;
+        if (this.abstractEmployees == null) {
+            newAbstractEmployee = new AbstractEmployee[ abstractEmployees.length];
+        }
+        else {
+            newAbstractEmployee = new AbstractEmployee[this.abstractEmployees.length + abstractEmployees.length];
+            System.arraycopy(this.abstractEmployees,
+                    0,newAbstractEmployee,
+                    0, this.abstractEmployees.length);
 
-        System.arraycopy(abstractEmployees,
-                0,newAbstractEmployee,
-                this.abstractEmployees.length+1, abstractEmployees.length);
-
-        return newAbstractEmployee;
+            System.arraycopy(abstractEmployees,
+                    0,newAbstractEmployee,
+                    this.abstractEmployees.length+1, abstractEmployees.length);
+        }
+        this.abstractEmployees = newAbstractEmployee;
     }
 
     @Override
     public double countingSalary() {
-        return super.countingSalary() + abstractEmployees.length*moneyForOneEmployee;
+        if (abstractEmployees == null) {
+            return super.countingSalary();
+        }
+        else {
+            return super.countingSalary() + abstractEmployees.length*moneyForOneEmployee;
+        }
+
     }
 
     @Override
     public String toString() {
-        return "Director{" +
+        return "AbstractDirector{" +
                 "abstractEmployees=" + Arrays.toString(abstractEmployees) +
                 ", quantityEmployees=" + quantityEmployees +
+                ", moneyForOneEmployee=" + moneyForOneEmployee +
                 ", name='" + name + '\'' +
                 ", secondName='" + secondName + '\'' +
                 ", workExperience=" + workExperience +
                 ", position=" + position +
+                ", salary=" + salary +
                 '}';
     }
 

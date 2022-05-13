@@ -5,12 +5,14 @@ abstract class AbstractEmployee implements CountingSalary {
     String secondName;
     double workExperience;
     Position position;
+    double salary;
 
     public AbstractEmployee(String name, String secondName, double workExperience, Position position) {
         this.name = name;
         this.secondName = secondName;
         this.workExperience = workExperience;
         this.position = position;
+        this.salary = countingSalary();
     }
 
     @Override
@@ -21,11 +23,12 @@ abstract class AbstractEmployee implements CountingSalary {
 
     @Override
     public String toString() {
-        return "Employee{" +
+        return "AbstractEmployee{" +
                 "name='" + name + '\'' +
                 ", secondName='" + secondName + '\'' +
                 ", workExperience=" + workExperience +
                 ", position=" + position +
+                ", salary=" + salary +
                 '}';
     }
 

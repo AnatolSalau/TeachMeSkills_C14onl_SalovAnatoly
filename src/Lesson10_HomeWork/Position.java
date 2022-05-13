@@ -1,7 +1,7 @@
 package Lesson10_HomeWork;
 
 enum Position {
-    DIRECTOR(1.5,1000),
+    DIRECTOR(1,1000),
     WORKER(1,1000);
 
     private double coefficient;

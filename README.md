@@ -1,2 +1,2 @@
-#Group: JAVA C14onl, Salov Anatoly
+# Group: JAVA C14onl, Salov Anatoly
 Homework from TeachMeSkills

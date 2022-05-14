@@ -1,5 +1,7 @@
 package Lesson10_HomeWork;
 
+import java.util.Arrays;
+
 class Main {
     public static void main(String[] args) {
         /*
@@ -11,18 +13,31 @@ class Main {
         Worker workerThree = new Worker("Vasya","Vasyliev",3,Position.WORKER);
 
         Director directorOne = new Director("Sidr","Sidorov",4,Position.DIRECTOR);
-        Director directorTwo = new Director("Dima","Dmitryevich",5,Position.DIRECTOR,workerOne);
 
-       PrintInformation.printTostring(workerOne,workerTwo,workerThree,directorOne);
+//       PrintInformation.printTostring(workerOne,workerTwo,workerThree,directorOne);
 
+       /*
+       *2) Назначить двух созданных сотрудников под управление директора.
+       * Распечатать сведения о директоре (инфо о директоре и об его подчинении).
+        */
         directorOne.addEmployee(workerOne,workerTwo);
-        System.out.println(directorOne.getQuantityEmployees());
-        directorOne.addEmployee(workerOne,workerTwo);
-        System.out.println(directorOne.getQuantityEmployees());
+  //      PrintInformation.printTostring(directorOne);
+        /*
+        * 3) Создать нового директора с одним сотрудником (под управлением)
+        *  и добавить его под управления существующего директора.
+        * 4) Убедиться, что сведения о первом директоре теперь включают сведения о втором,
+        *  который так же добавлен к нему (и т.д.).
 
-        directorTwo.addEmployee(workerOne,workerTwo,directorOne);
-
-        PrintInformation.printTostring(directorTwo);
+         */
+        Director directorTwo = new Director("Nikolay","Nikolayev",5,Position.DIRECTOR,workerThree);
+        directorOne.addEmployee(directorTwo);
+        PrintInformation.printTostring(directorOne);
+        /*
+        * 5) Создать сервис, который определяет есть ли у данного директора в подчинении (прямом или косвенном)
+        *  сотрудник с указанным именем (поиск вглубь)
+        * */
+        String allNames =  SearchingInformation.searchAllNames(directorTwo);
+        System.out.println(allNames);
      }
 
 }

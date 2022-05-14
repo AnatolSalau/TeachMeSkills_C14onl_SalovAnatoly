@@ -3,43 +3,37 @@ package Lesson10_HomeWork;
 import java.util.Arrays;
 import java.lang.System;
 
-abstract class AbstractDirector extends AbstractEmployee implements AddingEmployee{
-    AbstractEmployee[] abstractEmployees;
+abstract class AbstractDirector extends AbstractEmployee implements AddingEmployee,GetArrayAbstractEmployees{
+    AbstractEmployee[] arrayAbstractEmployees;
     int quantityEmployees;
     final int moneyForOneEmployee = 100;
 
     public AbstractDirector(String name, String secondName, double workExperience, Position position) {
         super(name, secondName, workExperience, position);
-        this.abstractEmployees = null;
+        this.arrayAbstractEmployees = null;
         this.quantityEmployees = 0;
     }
 
     public AbstractDirector(String name, String secondName, double workExperience, Position position,
-                            AbstractEmployee... abstractEmployees) {
+                            AbstractEmployee... arrayAbstractEmployees) {
         super(name, secondName, workExperience, position);
-        this.abstractEmployees = abstractEmployees;
-        this.quantityEmployees = this.abstractEmployees.length;
+        this.arrayAbstractEmployees = arrayAbstractEmployees;
+        this.quantityEmployees = this.arrayAbstractEmployees.length;
     }
 
     @Override
     public void addEmployee(AbstractEmployee... abstractEmployees) {
-        if (this.abstractEmployees == null) {
-            this.abstractEmployees = abstractEmployees;
-            this.quantityEmployees = this.abstractEmployees.length;
+        if (this.arrayAbstractEmployees == null) {
+            this.arrayAbstractEmployees = abstractEmployees;
+            this.quantityEmployees = this.arrayAbstractEmployees.length;
             this.salary = countingSalary();
-            System.out.println("if (this.abstractEmployees == null) WORK IF");
-
         }
         else {
-            System.out.println("if (this.abstractEmployees != null) WORK ELSE");
-
-            AbstractEmployee[] newAbstractEmployee = new AbstractEmployee[this.abstractEmployees.length + abstractEmployees.length];
-            System.arraycopy(this.abstractEmployees,0,newAbstractEmployee,0,this.abstractEmployees.length);
-            System.out.println(Arrays.toString(newAbstractEmployee));
-            System.arraycopy(abstractEmployees,0,newAbstractEmployee,this.abstractEmployees.length,abstractEmployees.length);
-            System.out.println(Arrays.toString(newAbstractEmployee));
-            this.abstractEmployees = newAbstractEmployee;
-            this.quantityEmployees = this.abstractEmployees.length;
+            AbstractEmployee[] newAbstractEmployee = new AbstractEmployee[this.arrayAbstractEmployees.length + abstractEmployees.length];
+            System.arraycopy(this.arrayAbstractEmployees,0,newAbstractEmployee,0,this.arrayAbstractEmployees.length);
+            System.arraycopy(abstractEmployees,0,newAbstractEmployee,this.arrayAbstractEmployees.length,abstractEmployees.length);
+            this.arrayAbstractEmployees = newAbstractEmployee;
+            this.quantityEmployees = this.arrayAbstractEmployees.length;
             this.salary = countingSalary();
         }
 
@@ -47,20 +41,20 @@ abstract class AbstractDirector extends AbstractEmployee implements AddingEmploy
 
     @Override
     public double countingSalary() {
-        if (abstractEmployees == null) {
+        if (arrayAbstractEmployees == null) {
             return super.countingSalary();
         }
         else {
-            return super.countingSalary() + abstractEmployees.length*moneyForOneEmployee;
+            return super.countingSalary() + arrayAbstractEmployees.length*moneyForOneEmployee;
         }
 
     }
 
     @Override
     public String toString() {
-        return "AbstractDirector{" +
-                "abstractEmployees=" + Arrays.toString(abstractEmployees) +
-                ", quantityEmployees=" + quantityEmployees +
+        return "\nDirector{\n" +
+                "His Employees:\n" + Arrays.toString(arrayAbstractEmployees) +
+                "\nquantityEmployees=" + quantityEmployees +
                 ", moneyForOneEmployee=" + moneyForOneEmployee +
                 ", name='" + name + '\'' +
                 ", secondName='" + secondName + '\'' +
@@ -70,8 +64,8 @@ abstract class AbstractDirector extends AbstractEmployee implements AddingEmploy
                 '}';
     }
 
-    public AbstractEmployee[] getAbstractEmployees() {
-        return abstractEmployees;
+    public AbstractEmployee[] getArrayAbstractEmployees() {
+        return arrayAbstractEmployees;
     }
 
     public int getQuantityEmployees() {

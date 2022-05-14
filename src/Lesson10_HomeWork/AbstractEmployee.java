@@ -1,6 +1,6 @@
 package Lesson10_HomeWork;
 
-abstract class AbstractEmployee implements CountingSalary {
+abstract class AbstractEmployee implements CountingSalary,GetName {
     String name;
     String secondName;
     double workExperience;
@@ -23,13 +23,13 @@ abstract class AbstractEmployee implements CountingSalary {
 
     @Override
     public String toString() {
-        return "AbstractEmployee{" +
+        return "Employee{" +
                 "name='" + name + '\'' +
                 ", secondName='" + secondName + '\'' +
                 ", workExperience=" + workExperience +
                 ", position=" + position +
                 ", salary=" + salary +
-                '}';
+                "}\n";
     }
 
     public String getName() {

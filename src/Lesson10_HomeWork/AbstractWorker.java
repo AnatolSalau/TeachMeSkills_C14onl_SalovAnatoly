@@ -6,5 +6,14 @@ class AbstractWorker extends AbstractEmployee{
         super(name, secondName, workExperience, position);
     }
 
-
+    @Override
+    public String toString() {
+        return "Worker{" +
+                "name='" + name + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", workExperience=" + workExperience +
+                ", position=" + position +
+                ", salary=" + salary +
+                "}";
+    }
 }

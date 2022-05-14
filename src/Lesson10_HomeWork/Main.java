@@ -36,8 +36,9 @@ class Main {
         * 5) Создать сервис, который определяет есть ли у данного директора в подчинении (прямом или косвенном)
         *  сотрудник с указанным именем (поиск вглубь)
         * */
-        String allNames =  SearchingInformation.searchAllNames(directorTwo);
-        System.out.println(allNames);
+        SearchingInformation searchingInformation = new SearchingInformation();
+        searchingInformation.searchAllNames(workerOne,directorOne);
+        searchingInformation.printAllNames();
      }
 
 }

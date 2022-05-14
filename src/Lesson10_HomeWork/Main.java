@@ -11,12 +11,18 @@ class Main {
         Worker workerThree = new Worker("Vasya","Vasyliev",3,Position.WORKER);
 
         Director directorOne = new Director("Sidr","Sidorov",4,Position.DIRECTOR);
+        Director directorTwo = new Director("Dima","Dmitryevich",5,Position.DIRECTOR,workerOne);
 
-        PrintInformation.printTostring(workerOne,workerTwo,workerThree,directorOne);
+       PrintInformation.printTostring(workerOne,workerTwo,workerThree,directorOne);
 
         directorOne.addEmployee(workerOne,workerTwo);
-        PrintInformation.printTostring(directorOne);
+        System.out.println(directorOne.getQuantityEmployees());
+        directorOne.addEmployee(workerOne,workerTwo);
+        System.out.println(directorOne.getQuantityEmployees());
 
+        directorTwo.addEmployee(workerOne,workerTwo,directorOne);
+
+        PrintInformation.printTostring(directorTwo);
      }
 
 }

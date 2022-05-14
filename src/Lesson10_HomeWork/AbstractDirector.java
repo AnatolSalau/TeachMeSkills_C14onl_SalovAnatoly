@@ -1,11 +1,11 @@
 package Lesson10_HomeWork;
 
 import java.util.Arrays;
+import java.lang.System;
 
 abstract class AbstractDirector extends AbstractEmployee implements AddingEmployee{
     AbstractEmployee[] abstractEmployees;
     int quantityEmployees;
-
     final int moneyForOneEmployee = 100;
 
     public AbstractDirector(String name, String secondName, double workExperience, Position position) {
@@ -15,7 +15,7 @@ abstract class AbstractDirector extends AbstractEmployee implements AddingEmploy
     }
 
     public AbstractDirector(String name, String secondName, double workExperience, Position position,
-                            AbstractEmployee[] abstractEmployees) {
+                            AbstractEmployee... abstractEmployees) {
         super(name, secondName, workExperience, position);
         this.abstractEmployees = abstractEmployees;
         this.quantityEmployees = this.abstractEmployees.length;
@@ -23,22 +23,26 @@ abstract class AbstractDirector extends AbstractEmployee implements AddingEmploy
 
     @Override
     public void addEmployee(AbstractEmployee... abstractEmployees) {
-
-        AbstractEmployee[] newAbstractEmployee;
         if (this.abstractEmployees == null) {
-            newAbstractEmployee = new AbstractEmployee[ abstractEmployees.length];
+            this.abstractEmployees = abstractEmployees;
+            this.quantityEmployees = this.abstractEmployees.length;
+            this.salary = countingSalary();
+            System.out.println("if (this.abstractEmployees == null) WORK IF");
+
         }
         else {
-            newAbstractEmployee = new AbstractEmployee[this.abstractEmployees.length + abstractEmployees.length];
-            System.arraycopy(this.abstractEmployees,
-                    0,newAbstractEmployee,
-                    0, this.abstractEmployees.length);
+            System.out.println("if (this.abstractEmployees != null) WORK ELSE");
 
-            System.arraycopy(abstractEmployees,
-                    0,newAbstractEmployee,
-                    this.abstractEmployees.length+1, abstractEmployees.length);
+            AbstractEmployee[] newAbstractEmployee = new AbstractEmployee[this.abstractEmployees.length + abstractEmployees.length];
+            System.arraycopy(this.abstractEmployees,0,newAbstractEmployee,0,this.abstractEmployees.length);
+            System.out.println(Arrays.toString(newAbstractEmployee));
+            System.arraycopy(abstractEmployees,0,newAbstractEmployee,this.abstractEmployees.length,abstractEmployees.length);
+            System.out.println(Arrays.toString(newAbstractEmployee));
+            this.abstractEmployees = newAbstractEmployee;
+            this.quantityEmployees = this.abstractEmployees.length;
+            this.salary = countingSalary();
         }
-        this.abstractEmployees = newAbstractEmployee;
+
     }
 
     @Override

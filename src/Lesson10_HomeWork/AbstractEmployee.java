@@ -1,6 +1,6 @@
 package Lesson10_HomeWork;
 
-abstract class AbstractEmployee implements CountingSalary,GetName {
+abstract class AbstractEmployee implements CountingSalary, GettingNamePosition {
     String name;
     String secondName;
     double workExperience;

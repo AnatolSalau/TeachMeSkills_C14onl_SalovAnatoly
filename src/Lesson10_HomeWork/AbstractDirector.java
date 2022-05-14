@@ -3,7 +3,7 @@ package Lesson10_HomeWork;
 import java.util.Arrays;
 import java.lang.System;
 
-abstract class AbstractDirector extends AbstractEmployee implements AddingEmployee,GetArrayAbstractEmployees{
+abstract class AbstractDirector extends AbstractEmployee implements AddingEmployee{
     AbstractEmployee[] arrayAbstractEmployees;
     int quantityEmployees;
     final int moneyForOneEmployee = 100;

@@ -29,16 +29,16 @@ class Main {
         *  который так же добавлен к нему (и т.д.).
 
          */
-        Director directorTwo = new Director("Nikolay","Nikolayev",5,Position.DIRECTOR,workerThree);
+        Director directorTwo = new Director("Nikolay","Nikolayev",5,Position.DIRECTOR,workerThree,workerOne);
         directorOne.addEmployee(directorTwo);
-        PrintInformation.printTostring(directorOne);
+        PrintInformation.printTostring(directorTwo);
         /*
         * 5) Создать сервис, который определяет есть ли у данного директора в подчинении (прямом или косвенном)
         *  сотрудник с указанным именем (поиск вглубь)
         * */
         SearchingInformation searchingInformation = new SearchingInformation();
-        searchingInformation.searchAllNames(workerOne,directorOne);
-        searchingInformation.printAllNames();
+        boolean haveName = searchingInformation.searchName("Vasya",workerOne,workerTwo,directorTwo);
+        System.out.println(haveName);
      }
 
 }

@@ -36,9 +36,17 @@ class Main {
         * 5) Создать сервис, который определяет есть ли у данного директора в подчинении (прямом или косвенном)
         *  сотрудник с указанным именем (поиск вглубь)
         * */
+        Worker workerForSearchHisName = new Worker("Search","Searchevich",10,Position.WORKER);
+        Director directorThree = new Director("Dima", "Dim",3,Position.DIRECTOR,workerForSearchHisName);
+        directorTwo.addEmployee(directorThree);
         SearchingInformation searchingInformation = new SearchingInformation();
-        boolean haveName = searchingInformation.searchName("Vasya",workerOne,workerTwo,directorTwo);
+
+        boolean haveName = searchingInformation.searchName("Unique",workerOne,workerTwo,directorOne);
         System.out.println(haveName);
+        //false
+        haveName = searchingInformation.searchName("Search",workerOne,workerTwo,directorOne);
+        System.out.println(haveName);
+        //true
      }
 
 }

@@ -1,7 +1,5 @@
 package Lesson10_HomeWork;
 
-import java.util.Arrays;
-
 class Main {
     public static void main(String[] args) {
         /*
@@ -39,12 +37,11 @@ class Main {
         Worker workerForSearchHisName = new Worker("Search","Searchevich",10,Position.WORKER);
         Director directorThree = new Director("Dima", "Dim",3,Position.DIRECTOR,workerForSearchHisName);
         directorTwo.addEmployee(directorThree);
-        SearchingInformation searchingInformation = new SearchingInformation();
 
-        boolean haveName = searchingInformation.searchName("Unique",workerOne,workerTwo,directorOne);
+        boolean haveName = SearchingInformation.haveNameRecursion("Unique",workerOne,workerTwo,directorOne);
         System.out.println(haveName);
         //false
-        haveName = searchingInformation.searchName("Search",workerOne,workerTwo,directorOne);
+        haveName = SearchingInformation.haveNameRecursion("Search",workerOne,workerTwo,directorOne);
         System.out.println(haveName);
         //true
      }

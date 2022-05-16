@@ -1,13 +1,13 @@
-package Lesson10_HomeWork;
+package lesson10_home_work;
 
-abstract class AbstractEmployee implements CountingSalary, GettingNamePosition {
+abstract class Employee implements CountingSalary, GettingName {
     String name;
     String secondName;
     double workExperience;
     Position position;
     double salary;
 
-    public AbstractEmployee(String name, String secondName, double workExperience, Position position) {
+    public Employee(String name, String secondName, double workExperience, Position position) {
         this.name = name;
         this.secondName = secondName;
         this.workExperience = workExperience;

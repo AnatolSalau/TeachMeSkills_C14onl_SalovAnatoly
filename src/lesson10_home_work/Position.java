@@ -1,4 +1,4 @@
-package Lesson10_HomeWork;
+package lesson10_home_work;
 
 enum Position {
     DIRECTOR(1,1000),

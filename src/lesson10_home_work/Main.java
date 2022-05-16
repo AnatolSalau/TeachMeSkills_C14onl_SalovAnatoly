@@ -1,4 +1,4 @@
-package Lesson10_HomeWork;
+package lesson10_home_work;
 
 class Main {
     public static void main(String[] args) {
@@ -6,11 +6,11 @@ class Main {
         * 1) Необходимо создать 3 работника и 1 директора.
         * Для каждого сотрудника распечатать полное имя сотрудника и его з/п.
          */
-        Worker workerOne = new Worker("Ivan","Ivanov",1,Position.WORKER);
-        Worker workerTwo = new Worker("Petr","Petrov",2,Position.WORKER);
-        Worker workerThree = new Worker("Vasya","Vasyliev",3,Position.WORKER);
+        Worker workerOne = new Worker("Ivan","Ivanov",1);
+        Worker workerTwo = new Worker("Petr","Petrov",2);
+        Worker workerThree = new Worker("Vasya","Vasyliev",3);
 
-        Director directorOne = new Director("Sidr","Sidorov",4,Position.DIRECTOR);
+        Director directorOne = new Director("Sidr","Sidorov",4);
 
 //       PrintInformation.printTostring(workerOne,workerTwo,workerThree,directorOne);
 
@@ -18,7 +18,7 @@ class Main {
        *2) Назначить двух созданных сотрудников под управление директора.
        * Распечатать сведения о директоре (инфо о директоре и об его подчинении).
         */
-        directorOne.addEmployee(workerOne,workerTwo);
+        directorOne.addOneOrMoreEmployees(workerOne,workerTwo);
   //      PrintInformation.printTostring(directorOne);
         /*
         * 3) Создать нового директора с одним сотрудником (под управлением)
@@ -27,21 +27,22 @@ class Main {
         *  который так же добавлен к нему (и т.д.).
 
          */
-        Director directorTwo = new Director("Nikolay","Nikolayev",5,Position.DIRECTOR,workerThree,workerOne);
-        directorOne.addEmployee(directorTwo);
+        Director directorTwo = new Director("Nikolay","Nikolayev",5);
+        directorTwo.addOneOrMoreEmployees(workerThree);
+        directorOne.addOneOrMoreEmployees(directorTwo);
         PrintInformation.printTostring(directorTwo);
         /*
         * 5) Создать сервис, который определяет есть ли у данного директора в подчинении (прямом или косвенном)
         *  сотрудник с указанным именем (поиск вглубь)
         * */
-        Worker workerForSearchHisName = new Worker("Search","Searchevich",10,Position.WORKER);
-        Director directorThree = new Director("Dima", "Dim",3,Position.DIRECTOR,workerForSearchHisName);
-        directorTwo.addEmployee(directorThree);
+        Worker workerForSearchHisName = new Worker("Search","Searchevich",10);
+        Director directorThree = new Director("Dima", "Dim",3,workerForSearchHisName);
+        directorTwo.addOneOrMoreEmployees(directorThree);
 
-        boolean haveName = SearchingInformation.haveNameRecursion("Unique",workerOne,workerTwo,directorOne);
+        boolean haveName = SearchingInformation.isNameInEmployeesDirector(directorOne, "Tolya");
         System.out.println(haveName);
         //false
-        haveName = SearchingInformation.haveNameRecursion("Search",workerOne,workerTwo,directorOne);
+        haveName = SearchingInformation.isNameInEmployeesDirector(directorOne, "Search");
         System.out.println(haveName);
         //true
      }

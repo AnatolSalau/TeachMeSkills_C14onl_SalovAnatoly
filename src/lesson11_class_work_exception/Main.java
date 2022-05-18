@@ -1,6 +1,6 @@
 package lesson11_class_work_exception;
 
-public class Main {
+class Main {
     public static void main(String[] args) {
         User user = new User("Petsya", 5);
         /*

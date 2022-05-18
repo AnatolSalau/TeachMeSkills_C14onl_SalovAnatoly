@@ -9,6 +9,5 @@ public class UserValidationService {
         } else {
             System.out.println("User is valid");
         }
-
     }
 }

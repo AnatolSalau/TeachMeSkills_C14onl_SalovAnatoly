@@ -9,6 +9,9 @@ class User {
         this.age = age;
     }
 
+    public User(String testUser) {
+    }
+
     public String getName() {
         return name;
     }

@@ -2,39 +2,32 @@ package lesson11_class_work_exception;
 
 public class Main {
     public static void main(String[] args) {
-//        Наследование исключений
-        User user = new User("");
+        User user = new User("Petsya", 5);
+        /*
+        * Создание собственных исключений и наследование исключения от исключения*/
         UserValidationService service = new UserValidationService();
         try {
             service.validate(user);
-        } catch (UserAgeValidationException exc) {
-            System.out.println(exc.getMessage());
-        } catch (UserNameValidationException exc) {
-            System.out.println(exc.getMessage());
+        } catch (UserNameValidationException ex) {
+//            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        } catch (UserAgeValidationException ex) {
+//            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
-        System.out.println("PrintOne");
-//-------------------------------------------------
-//        Метод без throws - програма продолжает работать
+        System.out.println("Print One");
+/*
+* ---------------------------------------------------------------------------*/
         DBService dbService = new DBService();
         dbService.save(user);
-        System.out.println("PrintTwo");
-//        ------------------------------------------
-//       Метод кидающий ошибку
+        System.out.println("Print Two");
         try {
             dbService.saveWithThrows(user);
-        } catch(DBExeption ex) {
+        }  catch (DBExeption ex) {
             System.out.println("Error in database");
-            ex.toString();
+            ex.printStackTrace();
         }
-        System.out.println("PrintThree");
-//--------------------------------------------------
-        DBRepository dbRepository = new DBUserRepositoryService();
-        try {
-            dbRepository.save(user);
-            dbRepository.delete(user);
-        } catch (DBExeption ex) {
-            ex.toString();
-        }
-        System.out.println("PrintThree");
+       System.out.println("Print Three");
+
     }
 }

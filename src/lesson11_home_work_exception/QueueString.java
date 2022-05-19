@@ -1,0 +1,10 @@
+package lesson11_home_work_exception;
+
+public interface QueueString {
+//    Добавить элемент в конец очереди
+    void add(String item);
+//    Извлечение элемента из начала очереди
+    String get();
+//    Проверяем пустая ли очередь или нет
+    boolean isEmpty();
+}

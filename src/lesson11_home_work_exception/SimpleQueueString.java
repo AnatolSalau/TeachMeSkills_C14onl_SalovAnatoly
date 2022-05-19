@@ -28,8 +28,13 @@ public class SimpleQueueString implements QueueString {
             }
         }
         else {
-            //Возвращаем ошибку
-            System.out.println("EXCEPTION! Queue is full, cant add element");
+            //Кидаем и обрабатываем ошибку
+            try {
+                throw new QueueExceptionIsFull(item, queue.length);
+            } catch (QueueExceptionIsFull ex) {
+                System.out.println(ex.getExceptionQueueIsFull());
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -46,10 +51,16 @@ public class SimpleQueueString implements QueueString {
             queue[lastIndex] = null;
             return result;
         }
-        //Если пуста возвращаем ошибку
+        //Если пуста кидаем и возвращаем ошибку
         else {
-            System.out.println("EXCEPTION! Queue is empty");
-            return result;
+            try {
+                throw new QueueExceptionIsEmpty();
+            } catch (QueueExceptionIsEmpty ex) {
+                System.out.println(ex.getExceptionQueueIsEmpty());
+                ex.printStackTrace();
+            } finally {
+                return result;
+            }
         }
     }
 

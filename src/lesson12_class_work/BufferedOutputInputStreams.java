@@ -23,7 +23,5 @@ class BufferedOutputInputStreams {
         } catch (IOException ex) {
             System.out.println("Error: " + ex.getMessage());
         }
-
     }
-
 }

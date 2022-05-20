@@ -2,18 +2,19 @@ package lesson12_class_work;
 
 import java.io.Serializable;
 
-class User implements Serializable {
+class User extends Person implements Serializable {
     private String name;
     private boolean sex;
     //Статика не сериализуется,
     // подтянется из класса юзер которрый будет загружен
     public static Integer age = 20;
-    private Adress adress;
+    private transient Adress adress;
 
     public User(String name, boolean sex, Adress adress) {
         this.name = name;
         this.sex = sex;
         this.adress = adress;
+        System.out.println("Full constructor");
     }
 
     public User(String name, boolean sex) {

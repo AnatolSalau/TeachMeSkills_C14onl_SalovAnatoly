@@ -45,6 +45,7 @@ class SerialiseDeserialise {
             }
             //Десериализуем User c адресом
             //Все вложенные классы в классе тоже должны быть сериализуемыми
+            //Или помеченными trancient - что это поле не надо сериализовать
             Object someObjectUserAdress = objectInputStreamUserAdress.readObject();
             //Проверяем userAdree или нет и вызываем tostring
             if (someObjectUserAdress instanceof User) {

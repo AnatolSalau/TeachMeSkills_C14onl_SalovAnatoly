@@ -1,0 +1,7 @@
+User1: Hello, I'm, User1, my, name, is, Anatoly1.
+       I'm, reading, book.
+User2: Hello, I'm, User2
+       My, name, also, Anatoly2,, and, me, too, reading, books.
+User2: It's, amazing,, what, book, do, you, reading?
+       Could, you, speak, books's, name?
+User1: Yes, Of-course

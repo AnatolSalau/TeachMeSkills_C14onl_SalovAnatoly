@@ -1,0 +1,151 @@
+
+In src/lesson10_home_work/AbstractDirector.java:
+> @@ -0,0 +1,78 @@
++package lesson10_home_work;
++
++import java.util.Arrays;
++import java.lang.System;
++
++abstract class AbstractDirector extends AbstractEmployee implements AddingEmployee{
+
+зачем делать абстрактными каждый тип? //FIXED
+
+
+In src/lesson10_home_work/AbstractDirector.java:
+> @@ -0,0 +1,78 @@
++package lesson10_home_work;
+
+имена пакетов с маленькой буквы //FIXED
+
+
+In src/lesson10_home_work/AbstractDirector.java:
+> @@ -0,0 +1,78 @@
++package lesson10_home_work;
++
++import java.util.Arrays;
++import java.lang.System;
++
++abstract class AbstractDirector extends AbstractEmployee implements AddingEmployee{
++    AbstractEmployee[] arrayEmployees;
++    int quantityEmployees;
++    final int moneyForOneEmployee = 100;
++
++    public AbstractDirector(String name, String secondName, double workExperience, Position position) {
+
+зачем передавать позицию, если это и так директор? ты же можешь тогда создать директора и сказать что он рабочий //FIXED
+
+
+In src/lesson10_home_work/AbstractDirector.java:
+> +        this.quantityEmployees = 0;
++    }
++
++    public AbstractDirector(String name, String secondName, double workExperience, Position position,
++                            AbstractEmployee... arrayEmployees) {
++        super(name, secondName, workExperience, position);
++        this.arrayEmployees = arrayEmployees;
++        this.quantityEmployees = this.arrayEmployees.length;
++    }
++
++    @Override
++    public void addEmployee(AbstractEmployee... employees) {
++        if (this.arrayEmployees == null) {
++            this.arrayEmployees = employees;
++            this.quantityEmployees = this.arrayEmployees.length;
++            this.salary = countingSalary();
+
+я бы не стал так делать , так как всегда надо держать в голове что подсчет происходит при добавлении
+В нашем случае он лучше будет произведен в момент запроса зп //FIXED
+
+In src/lesson10_home_work/AbstractDirector.java:
+> +
++    public AbstractDirector(String name, String secondName, double workExperience, Position position) {
++        super(name, secondName, workExperience, position);
++        this.arrayEmployees = null;
++        this.quantityEmployees = 0;
++    }
++
++    public AbstractDirector(String name, String secondName, double workExperience, Position position,
++                            AbstractEmployee... arrayEmployees) {
++        super(name, secondName, workExperience, position);
++        this.arrayEmployees = arrayEmployees;
++        this.quantityEmployees = this.arrayEmployees.length;
++    }
++
++    @Override
++    public void addEmployee(AbstractEmployee... employees) {
+
+фты назвал метод добавить эмплоя но ожидаешь список //FIXED
+
+
+In src/lesson10_home_work/AbstractDirector.java:
+> +        }
++        else {
++            AbstractEmployee[] newEmployee = new AbstractEmployee[this.arrayEmployees.length + employees.length];
++            System.arraycopy(this.arrayEmployees,0,newEmployee,0,this.arrayEmployees.length);
++            System.arraycopy(employees,0,newEmployee,this.arrayEmployees.length,employees.length);
++            this.arrayEmployees = newEmployee;
++            this.quantityEmployees = this.arrayEmployees.length;
++            this.salary = countingSalary();
++        }
++
++    }
++
++    @Override
++    public double countingSalary() {
++        if (arrayEmployees == null) {
++            return super.countingSalary();
+
+убери if для вызова метода предка - ты его в любом случае вызывешь //NOT FIXED
+
+
+In src/lesson10_home_work/AbstractEmployee.java:
+> @@ -0,0 +1,50 @@
++package lesson10_home_work;
++
++abstract class AbstractEmployee implements CountingSalary, GettingNamePosition {
+
+}
+зачем к имени добавлять что он абстактный? //Fixed
+
+In src/lesson10_home_work/AbstractWorker.java:
+> @@ -0,0 +1,19 @@
++package lesson10_home_work;
++
++abstract class AbstractWorker extends AbstractEmployee{
+
+убери ненужный слой абстракции //FIXED
+
+
+In src/lesson10_home_work/AbstractWorker.java:
+> @@ -0,0 +1,19 @@
++package lesson10_home_work;
++
++abstract class AbstractWorker extends AbstractEmployee{
++
++    public AbstractWorker(String name, String secondName, double workExperience, Position position) {
+
+    убери позицию //FIXED
+
+
+In src/lesson10_home_work/SearchingInformation.java:
+> @@ -0,0 +1,41 @@
++package lesson10_home_work;
++
++class SearchingInformation {
++
++        public static boolean haveNameRecursion(String name, AbstractEmployee... employees) {
+
+принимает директора (ну или сотрудника) и имя
+
+
+In src/lesson10_home_work/SearchingInformation.java:
+> @@ -0,0 +1,41 @@
++package lesson10_home_work;
++
++class SearchingInformation {
++
++        public static boolean haveNameRecursion(String name, AbstractEmployee... employees) {
++                boolean haveName = false;
++                for (AbstractEmployee employee : employees) {
+
+мне кажется ты сам запутаешься в куче абстрактых классов //FIXED

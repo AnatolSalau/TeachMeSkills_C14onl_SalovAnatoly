@@ -5,6 +5,7 @@ import java.io.*;
 class InputOutputStream {
     public static void main(String[] args) {
         StringBuilder stringBuilder = new StringBuilder();
+
         //Открываем потом ввода
         try(InputStream inputStream = new FileInputStream("src"
                 + File.separator + "lesson12_class_work" + File.separator + "input.txt")) {

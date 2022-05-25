@@ -21,8 +21,4 @@ class User implements Serializable {
                 ", sex=" + sex +
                 '}';
     }
-
-    public void printToString() {
-        System.out.println(toString());
-    }
 }

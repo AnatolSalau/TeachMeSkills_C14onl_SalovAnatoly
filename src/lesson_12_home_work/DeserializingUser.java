@@ -5,20 +5,17 @@ import java.io.*;
 class DeserializingUser {
     public static User deserializeUser(String fullPathToFile) {
         User result = null;
-        try(ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(
-            fullPathToFile
-        ))) {
+        try (ObjectInputStream objectInputStream =
+                     new ObjectInputStream(new FileInputStream(fullPathToFile))
+        ) {
             Object someObject = objectInputStream.readObject();
             if (someObject instanceof User) {
                 result = (User) someObject;
             }
-        } catch (ClassNotFoundException exc) {
-            exc.printStackTrace();
-        } catch (IOException exc) {
+        } catch (ClassNotFoundException | IOException exc) {
             exc.printStackTrace();
         } finally {
             return result;
         }
     }
-
 }

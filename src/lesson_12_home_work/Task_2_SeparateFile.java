@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Task_2_SeparateFile {
@@ -28,15 +27,15 @@ public class Task_2_SeparateFile {
             fileUser2.delete();
         }
         //Открываем потоки для чтения и записи
-        try(Scanner scanner = new Scanner(fileUser1User2);
-            PrintWriter printWriterToUser1File = new PrintWriter(new FileOutputStream(fullPathTo_User1_file,true));
-            PrintWriter printWriterToUser2File = new PrintWriter(new FileOutputStream(fullPathTo_User2_file,true));
+        try (Scanner scanner = new Scanner(fileUser1User2);
+             PrintWriter printWriterToUser1File = new PrintWriter(new FileOutputStream(fullPathTo_User1_file, true));
+             PrintWriter printWriterToUser2File = new PrintWriter(new FileOutputStream(fullPathTo_User2_file, true));
         ) {
-                //Считываем весь файл
-                String allText = scanner.useDelimiter("EOF").next();
-                //Делим строку на массив используя как разделитель имена
-                String[] allTextArray = allText.split("(?=User1:)|(?=User2:)");
-            for ( String string : allTextArray ) {
+            //Считываем весь файл
+            String allText = scanner.useDelimiter("EOF").next();
+            //Делим строку на массив используя как разделитель имена
+            String[] allTextArray = allText.split("(?=User1:)|(?=User2:)");
+            for (String string : allTextArray) {
                 //Делим используя двоеточие
                 String[] stringArray = string.split("(?=:)");
                 //если first item User1 -> записываем всю строку в файл для User1

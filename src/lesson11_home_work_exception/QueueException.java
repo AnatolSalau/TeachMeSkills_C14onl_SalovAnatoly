@@ -1,6 +1,6 @@
 package lesson11_home_work_exception;
 
-public class QueueException extends Exception{
+public class QueueException extends Exception {
     protected String item;
     protected int maxLengthQueue;
 
@@ -11,5 +11,4 @@ public class QueueException extends Exception{
         this.item = item;
         this.maxLengthQueue = maxLengthQueue;
     }
-
 }

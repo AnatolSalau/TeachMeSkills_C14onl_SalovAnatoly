@@ -16,9 +16,9 @@ public class SimpleQueueString implements QueueString {
     }
 
     @Override
-    public void add(String item) {
+    public void add(String item) throws QueueExceptionIsFull {
         //  Проверяем есть ли место в конце очереди
-        if(queue[lastIndex] == null) {
+        if (queue[lastIndex] == null) {
             //  Бежим с начала очереди и записываем в первый свободный элемент
             for (int i = 0; i < queue.length; i++) {
                 if (queue[i] == null) {
@@ -26,41 +26,28 @@ public class SimpleQueueString implements QueueString {
                     break;
                 }
             }
-        }
-        else {
-            //Кидаем и обрабатываем ошибку
-            try {
-                throw new QueueExceptionIsFull(item, queue.length);
-            } catch (QueueExceptionIsFull ex) {
-                System.out.println(ex.getExceptionQueueIsFull());
-                ex.printStackTrace();
-            }
+        } else {
+            //Кидаем ошибку в UserConsoleInterface
+            throw new QueueExceptionIsFull(item, queue.length);
         }
     }
 
     @Override
-    public String get() {
+    public String get() throws QueueExceptionIsEmpty {
         String result = queue[0];
         //Проверяем пуста ли очередь
         if (!isEmpty()) {
             //Сдвигаем все эелементы на один к началу
-            for (int i = 0; i < queue.length-1; i++) {
-                queue[i] = queue[i+1];
+            for (int i = 0; i < queue.length - 1; i++) {
+                queue[i] = queue[i + 1];
             }
             //всегда меняем последний индекс на null, чтобы не осталось старого значения
             queue[lastIndex] = null;
             return result;
         }
-        //Если пуста кидаем и возвращаем ошибку
+        //Если пуста кидаем  ошибку в UserConsoleInterface
         else {
-            try {
-                throw new QueueExceptionIsEmpty();
-            } catch (QueueExceptionIsEmpty ex) {
-                System.out.println(ex.getExceptionQueueIsEmpty());
-                ex.printStackTrace();
-            } finally {
-                return result;
-            }
+            throw new QueueExceptionIsEmpty();
         }
     }
 
@@ -68,7 +55,6 @@ public class SimpleQueueString implements QueueString {
     public boolean isEmpty() {
         if (queue[0] == null) {
             return true;
-        }
-        else return false;
+        } else return false;
     }
 }

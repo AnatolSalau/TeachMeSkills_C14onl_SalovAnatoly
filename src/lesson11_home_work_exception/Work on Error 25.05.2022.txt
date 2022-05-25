@@ -1,0 +1,203 @@
+@gr00shik commented on this pull request.
+
+ошибки применены не правильно
+
+In src/lesson11_home_work_exception/QueueException.java:
+
+> @@ -0,0 +1,15 @@
++package lesson11_home_work_exception;
++
++public class QueueException extends Exception{
++    protected String item;
++    protected int maxLengthQueue;
+
+не совсем правильно в абстракцию ложить то что относиться лишь к одному наследнику
+
+In src/lesson11_home_work_exception/QueueExceptionIsFull.java:
+
+> @@ -0,0 +1,12 @@
++package lesson11_home_work_exception;
++
++public class QueueExceptionIsFull extends QueueException {
++    public QueueExceptionIsFull(String item, int maxLengthQueue) {
++        super(item, maxLengthQueue);
++    }
++    public String getExceptionQueueIsFull() {
++        return "EXCEPTION: Queue is full, item(" + super.item
+
+пробуй использовать format
+
+In src/lesson11_home_work_exception/QueueString.java:
+
+> @@ -0,0 +1,10 @@
++package lesson11_home_work_exception;
++
++public interface QueueString  {
++//    Добавить элемент в конец очереди
++    void add(String item) throws QueueExceptionIsFull;
++//    Извлечение элемента из начала очереди
++    String get() throws QueueExceptionIsEmpty;
++//    Проверяем пустая ли очередь или нет
++    boolean isEmpty();
+
+не вижу смысла
+
+In src/lesson11_home_work_exception/SimpleQueueString.java:
+
+> @@ -0,0 +1,74 @@
++package lesson11_home_work_exception;
++
++import java.util.Arrays;
++
++public class SimpleQueueString implements QueueString {
++    private String[] queue;
++    private int lastIndex;
+
+избыточные данные
+
+In src/lesson11_home_work_exception/SimpleQueueString.java:
+
+> +
++    public SimpleQueueString(int maxLengthQueue) {
++        queue = new String[maxLengthQueue];
++        lastIndex = queue.length - 1;
++    }
++
++    public void printQueue() {
++        System.out.println(Arrays.toString(queue));
++    }
++
++    @Override
++    public void add(String item) {
++        //  Проверяем есть ли место в конце очереди
++        if(queue[lastIndex] == null) {
++            //  Бежим с начала очереди и записываем в первый свободный элемент
++            for (int i = 0; i < queue.length; i++) {
+
+вот почему копирование в лоб используют чаще чем просто создать новый массив?
+
+In src/lesson11_home_work_exception/SimpleQueueString.java:
+
+> +        //  Проверяем есть ли место в конце очереди
++        if(queue[lastIndex] == null) {
++            //  Бежим с начала очереди и записываем в первый свободный элемент
++            for (int i = 0; i < queue.length; i++) {
++                if (queue[i] == null) {
++                    queue[i] = item;
++                    break;
++                }
++            }
++        }
++        else {
++            //Кидаем и обрабатываем ошибку
++            try {
++                throw new QueueExceptionIsFull(item, queue.length);
++            } catch (QueueExceptionIsFull ex) {
++                System.out.println(ex.getExceptionQueueIsFull());
+
+ой, а почему сервис решает что делать с ошибкой?
+
+In src/lesson11_home_work_exception/SimpleQueueString.java:
+
+> +            try {
++                throw new QueueExceptionIsFull(item, queue.length);
++            } catch (QueueExceptionIsFull ex) {
++                System.out.println(ex.getExceptionQueueIsFull());
++                ex.printStackTrace();
++            }
++        }
++    }
++
++    @Override
++    public String get() {
++        String result = queue[0];
++        //Проверяем пуста ли очередь
++        if (!isEmpty()) {
++            //Сдвигаем все эелементы на один к началу
++            for (int i = 0; i < queue.length-1; i++) {
+
+тут так же как и выше
+
+In src/lesson11_home_work_exception/SimpleQueueString.java:
+
+> +                ex.printStackTrace();
++            }
++        }
++    }
++
++    @Override
++    public String get() {
++        String result = queue[0];
++        //Проверяем пуста ли очередь
++        if (!isEmpty()) {
++            //Сдвигаем все эелементы на один к началу
++            for (int i = 0; i < queue.length-1; i++) {
++                queue[i] = queue[i+1];
++            }
++            //всегда меняем последний индекс на null, чтобы не осталось старого значения
++            queue[lastIndex] = null;
+
+проще все же не создавать пустой массив а менять его по мере надобности
+
+In src/lesson11_home_work_exception/SimpleQueueString.java:
+
+> +    public String get() {
++        String result = queue[0];
++        //Проверяем пуста ли очередь
++        if (!isEmpty()) {
++            //Сдвигаем все эелементы на один к началу
++            for (int i = 0; i < queue.length-1; i++) {
++                queue[i] = queue[i+1];
++            }
++            //всегда меняем последний индекс на null, чтобы не осталось старого значения
++            queue[lastIndex] = null;
++            return result;
++        }
++        //Если пуста кидаем и возвращаем ошибку
++        else {
++            try {
++                throw new QueueExceptionIsEmpty();
+
+не вижу смысла в ошибке - можно просто вывести инфу в консоль
+
+In src/lesson11_home_work_exception/UserConsoleInterface.java:
+
+> +                    return;
++                }
++                case "get": {
++                    System.out.println(simpleQueueString.get());
++                    break;
++                }
++                default: {
++                    simpleQueueString.add(string);
++                }
++            }
++        }
++
++
++    }
++
++    private String getStringFromUser() {
+
+стоит ли ради одной строчки кода создавать 3?
+
+In src/lesson11_home_work_exception/SimpleQueueString.java:
+
+> +        //  Проверяем есть ли место в конце очереди
++        if(queue[lastIndex] == null) {
++            //  Бежим с начала очереди и записываем в первый свободный элемент
++            for (int i = 0; i < queue.length; i++) {
++                if (queue[i] == null) {
++                    queue[i] = item;
++                    break;
++                }
++            }
++        }
++        else {
++            //Кидаем и обрабатываем ошибку
++            try {
++                throw new QueueExceptionIsFull(item, queue.length);
++            } catch (QueueExceptionIsFull ex) {
++                System.out.println(ex.getExceptionQueueIsFull());
+
+и зачем тут она тогда вообще нужна если мы можем прост sout вывести данные в консоль?

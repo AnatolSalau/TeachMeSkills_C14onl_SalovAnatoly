@@ -2,11 +2,11 @@ package lesson_14_collections_classwork;
 
 import java.util.Objects;
 
-public class User {
+public class UserCumtomHash {
     private int age;
     private String name;
 
-    public User(int age, String name) {
+    public UserCumtomHash(int age, String name) {
         this.age = age;
         this.name = name;
     }
@@ -31,12 +31,12 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
+        UserCumtomHash user = (UserCumtomHash) o;
         return age == user.age && name.equals(user.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(age, name);
+        return Objects.hash(age);
     }
 }

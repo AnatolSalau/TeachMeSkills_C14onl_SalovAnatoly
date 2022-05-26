@@ -13,6 +13,6 @@ class DBUserRepositoryService implements DBRepository {
 
     @Override
     public void save() throws DBExeption {
-        throw new TestDBExeption(new User("TestUser"));
+        throw new TestDBExeption(new User("TestUser",30));
     }
 }

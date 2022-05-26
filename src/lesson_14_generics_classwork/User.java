@@ -1,6 +1,4 @@
-package lesson_14_collections_classwork;
-
-import java.util.Objects;
+package lesson_14_generics_classwork;
 
 class User {
     private int age;
@@ -15,8 +13,16 @@ class User {
         return age;
     }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -25,18 +31,5 @@ class User {
                 "age=" + age +
                 ", name='" + name + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return age == user.age && name.equals(user.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(age, name);
     }
 }

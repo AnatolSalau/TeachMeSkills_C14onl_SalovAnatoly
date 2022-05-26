@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-public class SortingHashTreeMap {
+class SortingHashTreeMap {
     public static void main(String[] args) {
         HashMap<String,UserCumtomHash> usersHash = new HashMap();
         usersHash.put("ddddd",new UserCumtomHash(30,"C_Third"));

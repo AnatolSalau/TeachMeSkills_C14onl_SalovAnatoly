@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class IterateCollections_Iterable {
+class IterateCollections_Iterable {
     public static void main(String[] args) {
      //Сортировка объектов TreeSet с помощью Comparator
        Set<User> users = new TreeSet<User>(

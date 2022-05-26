@@ -2,7 +2,7 @@ package lesson_14_collections_classwork;
 
 import java.util.Objects;
 
-public class UserCumtomHash {
+class UserCumtomHash {
     private int age;
     private String name;
 

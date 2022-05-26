@@ -3,7 +3,7 @@ package lesson_14_collections_classwork;
 import java.util.ArrayList;
 import java.util.Collections;
 //Сортировка строк в ArrayList
-public class CollectionsSortString {
+class CollectionsSortString {
     public static void main(String[] args) {
         ArrayList<String> al = new ArrayList<String>();
         al.add("Geeks For Geeks");

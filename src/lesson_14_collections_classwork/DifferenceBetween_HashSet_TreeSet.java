@@ -2,7 +2,7 @@ package lesson_14_collections_classwork;
 
 import java.util.*;
 
-public class DifferenceBetween_HashSet_TreeSet {
+class DifferenceBetween_HashSet_TreeSet {
     public static void main(String[] args) {
      //Сортировка объектов TreeSet с помощью Comparator
        Set<User> users = new TreeSet<User>(

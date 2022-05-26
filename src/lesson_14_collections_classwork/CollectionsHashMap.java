@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class CollectionsHashMap {
+class CollectionsHashMap {
     public static void main(String[] args) {
      //HashMap автоматически сортирует объекты в зависимости от возвращаемого значения hashCode
      //HashMap ищет только дубликаты по ключу!

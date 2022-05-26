@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class IterateHashMap {
+class IterateHashMap {
     public static void main(String[] args) {
         HashMap<String,UserCumtomHash> usersHash = new HashMap();
         usersHash.put("ddddd",new UserCumtomHash(30,"C_Third"));

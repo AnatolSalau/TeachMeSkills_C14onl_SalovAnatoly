@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 //Сортировка объеквтов Collections.sort с помощью Comparator
-public class CollectionsSortUsers {
+class CollectionsSortUsers {
     public static void main(String[] args) {
         ArrayList<User> users = new ArrayList<>();
         users.add(new User(30,"C_Third"));

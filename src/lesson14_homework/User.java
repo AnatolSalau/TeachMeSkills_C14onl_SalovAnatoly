@@ -2,7 +2,7 @@ package lesson14_homework;
 
 import java.util.Objects;
 
-class User implements Comparable<User>, GetNameAgeGender {
+class User implements Comparable<User> {
     private String name;
     private Gender gender;
     private int age;
@@ -35,6 +35,7 @@ class User implements Comparable<User>, GetNameAgeGender {
             int codeCurrent = this.name.charAt(0);
             //Код первой буквы внешнего обьекта
             int codeExternal = user.getName().charAt(0);
+            //возвращаем результат вычитания
             return codeCurrent - codeExternal;
         } else if (user.getAge() > this.age) {
             return -1;
@@ -51,15 +52,15 @@ class User implements Comparable<User>, GetNameAgeGender {
                 ", age=" + age +
                 '}';
     }
-    @Override
+
     public String getName() {
         return name;
     }
-    @Override
+
     public Gender getGender() {
         return gender;
     }
-    @Override
+
     public int getAge() {
         return age;
     }

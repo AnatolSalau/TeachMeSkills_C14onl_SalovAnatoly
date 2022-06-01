@@ -21,6 +21,7 @@ class User {
         return "User{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
+                ", id=" + id +
                 '}';
     }
 

@@ -1,0 +1,8 @@
+User1: Hello, my name is Anatoly1.
+       I'm reading book. Something text
+User2: Hello, it,s good.
+       My name is Anatoly2 and me too reading books. Something text.
+       Some text
+User1: It's amazing what book do you reading?
+       Could you speak books's name?
+User2: Yes, Of-course

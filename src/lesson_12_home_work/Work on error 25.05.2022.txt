@@ -1,0 +1,221 @@
+@gr00shik commented on this pull request.
+
+готово
+
+In src/lesson_12_home_work/DeserializingUser.java:
+
+> @@ -0,0 +1,24 @@
+
++package lesson_12_home_work;
+
++
+
++import java.io.*;
+
++
+
++class DeserializingUser {
+
++    public static User deserializeUser(String fullPathToFile) {
+
++        User result = null;
+
++        try(ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(
+
++            fullPathToFile
+
++        ))) {
+
+не удобный формат переносов
+
+In src/lesson_12_home_work/DeserializingUser.java:
+
+> @@ -0,0 +1,24 @@
+
++package lesson_12_home_work;
+
++
+
++import java.io.*;
+
++
+
++class DeserializingUser {
+
++    public static User deserializeUser(String fullPathToFile) {
+
++        User result = null;
+
++        try(ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(
+
++            fullPathToFile
+
++        ))) {
+
++            Object someObject = objectInputStream.readObject();
+
++            if (someObject instanceof User) {
+
++                result = (User) someObject;
+
++            }
+
++        } catch (ClassNotFoundException exc) {
+
+просто объедини два catch они делают одно и то же
+
+In src/lesson_12_home_work/SerializingUser.java:
+
+> @@ -0,0 +1,21 @@
+
++package lesson_12_home_work;
+
++
+
++import java.io.*;
+
++
+
++class SerializingUser {
+
++     public static boolean serializeUser(User user, String fullPathToFile) {
+
++         boolean result = false;
+
++        try(ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(
+
++                fullPathToFile
+
++        ))) {
+
++                objectOutputStream.writeObject(user);
+
++                result = true;
+
++        } catch (FileNotFoundException exc) {
+
+аналогично
+
+In src/lesson_12_home_work/Sex.java:
+
+> @@ -0,0 +1,7 @@
+
++package lesson_12_home_work;
+
++
+
++import java.io.Serializable;
+
++
+
++public enum Sex implements Serializable {
+
+enum и так серилизуем
+
+In src/lesson_12_home_work/Task_1_SerialiseDeserialise.java:
+
+> +
+
++import java.io.File;
+
++
+
++class Task_1_SerialiseDeserialise {
+
++    public static void main(String[] args) {
+
++        String fullPathToFile = "src" + File.separator + "lesson_12_home_work" + File.separator +
+
++                "someObject.txt";
+
++        User user = new User("Anatoly",32,Sex.MALE);
+
++        User newUser = null;
+
++        if(SerializingUser.serializeUser(user,fullPathToFile)) {
+
++            newUser = DeserializingUser.deserializeUser(fullPathToFile);
+
++        } else {
+
++            System.out.println("Читаем исключение в консоле");
+
++        }
+
++        if (newUser != null) {
+
++            newUser.printToString();
+
+у объектов есть метод toString стоит им пользоваться
+
+In src/lesson_12_home_work/Task_1_SerialiseDeserialise.java:
+
+> +
+
++class Task_1_SerialiseDeserialise {
+
++    public static void main(String[] args) {
+
++        String fullPathToFile = "src" + File.separator + "lesson_12_home_work" + File.separator +
+
++                "someObject.txt";
+
++        User user = new User("Anatoly",32,Sex.MALE);
+
++        User newUser = null;
+
++        if(SerializingUser.serializeUser(user,fullPathToFile)) {
+
++            newUser = DeserializingUser.deserializeUser(fullPathToFile);
+
++        } else {
+
++            System.out.println("Читаем исключение в консоле");
+
++        }
+
++        if (newUser != null) {
+
++            newUser.printToString();
+
++        } else {
+
++            System.out.println("Читаем исключение в консоле");
+
+ты или уже прочитал при стерилизации или не увидишь этого так как если при диссерилизации выпадет исключение программа просто закроется
+
+In src/lesson_12_home_work/Task_2_SeparateFile.java:
+
+> +        File fileUser2 = new File(fullPathTo_User2_file);
+
++        if (fileUser1.exists()) {
+
++            fileUser1.delete();
+
++        }
+
++        if (fileUser2.exists()) {
+
++            fileUser2.delete();
+
++        }
+
++        //Открываем потоки для чтения и записи
+
++        try(Scanner scanner = new Scanner(fileUser1User2);
+
++            PrintWriter printWriterToUser1File = new PrintWriter(new FileOutputStream(fullPathTo_User1_file,true));
+
++            PrintWriter printWriterToUser2File = new PrintWriter(new FileOutputStream(fullPathTo_User2_file,true));
+
++        ) {
+
++                //Считываем весь файл
+
++                String allText = scanner.useDelimiter("EOF").next();
+
++                //Делим строку на массив используя как разделитель имена
+
++                String[] allTextArray = allText.split("(?=User1:)|(?=User2:)");
+
+жалко будет того кто потом решит разобраться в этой логике)

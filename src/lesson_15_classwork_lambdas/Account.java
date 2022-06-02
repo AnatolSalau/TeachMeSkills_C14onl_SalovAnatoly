@@ -12,7 +12,11 @@ public class Account {
         this.id = id;
         this.password = name.toUpperCase();
     }
-
+    public Account(User user) {
+        this.name = user.getName();
+        this.id = user.getId();
+        this.password = user.getName().toUpperCase();
+    }
     public String getName() {
         return name;
     }

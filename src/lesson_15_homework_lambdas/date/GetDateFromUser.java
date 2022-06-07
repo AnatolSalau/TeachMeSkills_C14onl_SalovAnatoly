@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 class GetDateFromUser {
-    public LocalDate getDateFromConsole() {
+    public LocalDate getDateFromConsole(){
         LocalDate result = null;
         try {
             String str = getStringFromUser();
@@ -22,18 +22,16 @@ class GetDateFromUser {
         }
         return result;
     }
-
-    private String getStringFromUser() {
+    //Убрал обработку исключений в методе, пометил просто что он выбрасывает исключения
+    //Все ошибки что будут выкинуты в сканнере будем обрабатывать в методе выше
+    private String getStringFromUser() throws RuntimeException {
         String string = null;
-        try (Scanner scanner = new Scanner(System.in)) {
+        Scanner scanner = new Scanner(System.in);
             if (scanner.hasNextLine()) {
                 string = scanner.nextLine();
             } else {
                 System.out.println("Has next false");
             }
-        } catch (RuntimeException ex) {
-            throw ex;
-        }
         return string;
     }
 }

@@ -12,31 +12,23 @@ package lesson_15_homework_lambdas.lambda;
 public class Main {
     public static void main(String[] args) {
         ConsoleUserService consoleUserService = new ConsoleUserService();
-        ClassLambdaMethod<String> stringMethod = new ClassLambdaMethod();
-        ClassLambdaMethod<Integer> intMethod = new ClassLambdaMethod();
+        ChangeStringInteger changeStringInteger = new ChangeStringInteger();
         System.out.println("Enter 1(String) or 2(Integer)");
         Integer number = consoleUserService.getIntFromUser();
         switch (number) {
             case 1: {
                 System.out.println("Enter string");
                 String strFromUser = consoleUserService.getStringFromUser();
-                //Реализация через лямбду
-                String result = stringMethod.lambdaMethod(strFromUser, str -> new StringBuilder(str).reverse().toString());
+                //Реализация через лямбду, саму лямбду вынесем в отдельный метод
+                String result = changeStringInteger.changeString(strFromUser, Main::reverseString);
                 System.out.println(result);
                 break;
             }
             case 2: {
                 System.out.println("Enter integer");
                 Integer intFromUser = consoleUserService.getIntFromUser();
-                //Реализация через лямбду
-                Integer result = intMethod.lambdaMethod(intFromUser, integer -> {
-                        int num = 1;
-                        for (int i = 1; i <= intFromUser; i++) {
-                            num = num * i;
-                        }
-                        return num;
-                    }
-                );
+                //Реализация через лямбду, саму лямбду вынесем в отдельный метод
+                Integer result = changeStringInteger.changeInteger(intFromUser,Main::factorialInt);
                 System.out.println(result);
                 break;
             }
@@ -44,5 +36,15 @@ public class Main {
             }
         }
         consoleUserService.finish();
+    }
+    private static String reverseString(String string) {
+        return new StringBuilder(string).reverse().toString();
+    }
+    private static Integer factorialInt (Integer integer) {
+        int num = 1;
+        for (int i = 1; i <= integer; i++) {
+            num = num * i;
+        }
+        return num;
     }
 }

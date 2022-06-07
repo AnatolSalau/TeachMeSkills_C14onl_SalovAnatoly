@@ -3,7 +3,7 @@ package lesson11_class_work_exception;
 public class Main {
     public static void main(String[] args) {
 //        Наследование исключений
-        User user = new User("");
+        User user = new User("",32);
         UserValidationService service = new UserValidationService();
         try {
             service.validate(user);

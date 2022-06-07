@@ -13,6 +13,8 @@ public class UserService {
         }
         //Сортируем на основе Comparable
         Collections.sort(result);
+        //Сортируем двумя компрараторами
+        result.sort(new ComparatorAge().thenComparing(new ComparatorName()));
         return result;
     }
 
@@ -54,9 +56,9 @@ public class UserService {
     //сортировка по возрасту для листов
     public static List<User> getSortedCollection(List<User> list) {
         List<User> result = null;
-        //Сортируем
-        Collections.sort(list);
         result = list;
+        //Сортируем двумя компрараторами
+        result.sort(new ComparatorAge().thenComparing(new ComparatorName()));
         return result;
     }
 

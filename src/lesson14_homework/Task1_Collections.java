@@ -4,14 +4,12 @@ import java.util.*;
 
 class Task1_Collections {
     public static void main(String[] args) {
-        //Создаем ArrayList
-        List<User> arrayListUsers = new ArrayList<>(
-                Arrays.asList(
+        //Создаем ArrayList, Убрал лишнюю обертку для созданрия листа согласно замечанию
+        List<User> arrayListUsers = Arrays.asList(
                         new User("C", Gender.MALE, 20),
                         new User("B", Gender.FEMALE, 25),
                         new User("A", Gender.MALE, 30),
                         new User("A", Gender.MALE, 20)
-                )
         );
         //Cоздаем linkedList
         List<User> linkedListUsers = new LinkedList<>(
@@ -42,9 +40,13 @@ class Task1_Collections {
                 )
         );
         //Ищем пользователей по именам учитывая дубликаты
+        System.out.println("arrayListUsers:");
         System.out.println(UserService.findAllUsersWithName(arrayListUsers, "A"));
+        System.out.println("linkedListUsers:");
         System.out.println(UserService.findAllUsersWithName(linkedListUsers, "B"));
+        System.out.println("linkedListUsers:");
         System.out.println(UserService.findAllUsersWithName(hashSetUsers, "C"));
+        System.out.println("treeSetUsers:");
         System.out.println(UserService.findAllUsersWithName(treeSetUsers, "D"));
         //Ищем пользователей по полу
         System.out.println(UserService.findAllUsersWithGender(arrayListUsers, Gender.MALE));
@@ -52,6 +54,7 @@ class Task1_Collections {
         System.out.println(UserService.findAllUsersWithGender(hashSetUsers, Gender.FEMALE));
         System.out.println(UserService.findAllUsersWithGender(treeSetUsers, Gender.FEMALE));
         //Получаем отсортированную коллекцию по возрасту
+
         System.out.println(UserService.getSortedCollection(arrayListUsers));
         System.out.println(UserService.getSortedCollection(linkedListUsers));
         System.out.println(UserService.getSortedCollection(hashSetUsers));

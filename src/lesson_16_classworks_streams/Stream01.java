@@ -6,7 +6,7 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Stream01 {
+class Stream01 {
     public static void main(String[] args) {
         List<String> list = Arrays.asList("first", "second", "last", "fir", "fi");
         //#1 Stream Instance

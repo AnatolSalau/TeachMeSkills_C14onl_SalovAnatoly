@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class Stream05_TerminalOperations {
+class Stream05_TerminalOperations {
     public static void main(String[] args) {
         List<Family> familyList = Arrays.asList(
                 new Family("Family-01", 3, Arrays.asList(

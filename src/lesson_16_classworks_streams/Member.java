@@ -1,6 +1,6 @@
 package lesson_16_classworks_streams;
 
-public class Member {
+class Member {
     private String name;
     private int age;
     private SEX sex;

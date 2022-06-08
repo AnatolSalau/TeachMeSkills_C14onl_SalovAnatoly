@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Stream02 {
+class Stream02 {
     public static void main(String[] args) {
         List<Family> familyList = Arrays.asList(
                 new Family("firstFamily", 3, Arrays.asList(
@@ -46,9 +46,5 @@ public class Stream02 {
                                 member -> member.getAge()
                                 ));
         System.out.println(collect);
-
     }
-
-
-
 }

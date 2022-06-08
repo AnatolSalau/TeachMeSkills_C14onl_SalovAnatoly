@@ -3,7 +3,7 @@ package lesson_16_classworks_streams;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Family {
+class Family {
     private String sname;
     private int age;
     private List<Member> members;

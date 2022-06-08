@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Stream03 {
+class Stream03 {
     public static void main(String[] args) {
         List<Family> familyList = Arrays.asList(
                 new Family("Family-01", 3, Arrays.asList(

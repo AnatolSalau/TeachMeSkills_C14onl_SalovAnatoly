@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.IntSummaryStatistics;
 import java.util.stream.IntStream;
 
-public class Stream_06 {
+class Stream_06 {
     public static class Statistic {
         int value = 0;
     }

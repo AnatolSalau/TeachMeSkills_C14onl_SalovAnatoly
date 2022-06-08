@@ -7,7 +7,7 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Stream00 {
+class Stream00 {
 
     public static void main(String[] args) {
         int length = 3;

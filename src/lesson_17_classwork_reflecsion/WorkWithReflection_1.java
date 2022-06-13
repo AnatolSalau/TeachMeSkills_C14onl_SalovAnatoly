@@ -28,7 +28,6 @@ class WorkWithReflection_1 {
             method.setAccessible(true);
             System.out.println("method.invoke(myServiceClass):");
             method.invoke(myService);
-
             //Get annotation from field
             Field field = myService.getClass().getDeclaredField("sname");
             Annotation[] annotations = field.getDeclaredAnnotations();

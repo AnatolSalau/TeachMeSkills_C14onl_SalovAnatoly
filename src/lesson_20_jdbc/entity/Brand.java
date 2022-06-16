@@ -1,5 +1,5 @@
 package lesson_20_jdbc.entity;
 
-enum Brand {
+public enum Brand {
     VOLVO, AUDI
 }

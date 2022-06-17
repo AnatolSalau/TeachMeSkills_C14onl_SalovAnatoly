@@ -41,6 +41,8 @@ public class Main_Cars {
 
             List<Car> carByBrand = carService.getByBrand(Brand.VOLVO);
             System.out.println(carByBrand);
+            //Connection и statements нужно закрывать
+            connection.close();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }

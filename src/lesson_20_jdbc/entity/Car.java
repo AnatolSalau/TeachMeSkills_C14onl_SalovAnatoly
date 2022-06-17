@@ -16,6 +16,13 @@ public class Car {
         this.age = age;
     }
 
+    public Car(String number, Brand brand, int age) {
+        this.id = null;
+        this.number = number;
+        this.brand = brand;
+        this.age = age;
+    }
+
     public Integer getId() {
         return id;
     }

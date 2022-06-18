@@ -2,7 +2,6 @@ package lesson_16_classworks_streams;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 class ForkJoinPool {
     public static void main(String[] args) {

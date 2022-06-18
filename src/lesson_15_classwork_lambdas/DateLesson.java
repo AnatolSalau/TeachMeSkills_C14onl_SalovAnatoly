@@ -28,11 +28,9 @@ class DateLesson {
         Locale locale = new Locale("ru","RU");
         //Форматирование даты с помощью SimpleDateFormat
         //Создадим паттерн
-        String pattern = "EEE, d MMMM yyyy HH:mm:ss Z";
+        String pattern = "EEE, d MMM yyyy HH:mm:ss Z";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern,locale);
         String dateAfterFormat = simpleDateFormat.format(dateCurrent);
         System.out.println(dateAfterFormat);
-        System.out.println(date.getDayOfWeek());
-        System.out.println(date.plusDays(1).getDayOfWeek());
     }
 }

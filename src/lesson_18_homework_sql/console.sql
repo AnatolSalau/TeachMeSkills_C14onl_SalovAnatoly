@@ -1,4 +1,5 @@
 select current_database();
+
 /*
 date
 1999-01-08	ISO 8601; 8 января в любом режиме (рекомендуемый формат)
@@ -53,7 +54,13 @@ alter table hobby_types
 /*
  делаем колонку name_type_hobby внешним ключом - для таблицы hobbies
  */
- alter table hobby_types
-    add constraint fk_type_hobby foreign key (name_type_hobby) references hobbies(type_hobby);
+ alter table hobbies
+    add constraint fk_type_hobby foreign key (type_hobby) references hobby_types (id_hobby_types);
+
+/*
+ Удаляем зависимость
+ */
+ alter table hobbies
+drop constraint fk_type_hobby;
 
 
